@@ -200,42 +200,6 @@ au FileType go filetype plugin indent on
 syntax on
 
 
-" ===========================================================
-" Google Specific stuff. You need to have g4 for this.
-" ============================================================
-"
-" perforce commands
-command! -nargs=* -complete=file PEdit :!g4 edit %
-command! -nargs=* -complete=file PRevert :!g4 revert %
-command! -nargs=* -complete=file PDiff :!g4 diff %
-command! -nargs=* -complete=file PAdd :!g4 add %
-
-function! s:CheckOutFile()
- if filereadable(expand("%")) && ! filewritable(expand("%"))
-   let s:pos = getpos('.')
-   let option = confirm("Readonly file, do you want to checkout from p4?"
-         \, "&Yes\n&No", 1, "Question")
-   if option == 1
-     PEdit
-   endif
-   edit!
-   call cursor(s:pos[1:3])
- endif
-endfunction
-au FileChangedRO * nested :call <SID>CheckOutFile()
-
-" Git 5 thingies using quickfix 
-command! Comments cexpr system('git5 comments --quickfix')
-command! Lint cexpr system('git5 lint --quickfix')
-" custom gpylint things
-" autocmd BufWinEnter *.py call matchadd('ErrorMsg', '\%>' . &l:textwidth . 'v.\+', -1)
-function! HighlightTooLongLines()
-  highlight def link RightMargin Error
-  if &textwidth != 0
-    exec ('match RightMargin /\%>' . &textwidth . 'v.\+/')
-  endif
-endfunction
-
 augroup filetypedetect
 au WinEnter,BufNewFile,BufRead * call HighlightTooLongLines()
 augroup END
