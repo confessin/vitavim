@@ -302,6 +302,7 @@ if count(g:vimified_packages, 'general')
     Bundle 'tomtom/tlib_vim.git'
     Bundle 'honza/snipmate-snippets.git'
     Bundle 'kchmck/vim-coffee-script.git'
+    Bundle 'Raimondi/delimitMate.git'
 endif
 
 " ===========================================================
