@@ -295,7 +295,8 @@ if count(g:vimified_packages, 'general')
     Bundle 'sjl/gundo.vim.git'  
     " Disabling this because its really flaky and makes the editor slow."
     " Bundle 'fs111/pydoc.vim.git'
-    Bundle 'vim-scripts/pep8.git'
+    " disabling this since using syntastic.
+    " Bundle 'vim-scripts/pep8.git'
     Bundle 'alfredodeza/pytest.vim.git'
     Bundle 'reinh/vim-makegreen'
     Bundle 'vim-scripts/TaskList.vim.git'
@@ -314,7 +315,12 @@ if count(g:vimified_packages, 'general')
     Bundle 'Raimondi/delimitMate.git'
     Bundle 'fholgado/minibufexpl.vim.git'
     Bundle 'ervandew/supertab.git'
-    Bundle 'kevinw/pyflakes-vim.git'
+    "Bundle 'kevinw/pyflakes-vim.git'
+    " for fuzzy search of files. supports regex
+    Bundle 'kien/ctrlp.vim.git'
+    " For 1 lint for all purpose.
+    " FIXME: It needs external tools for checking lint
+    Bundle 'scrooloose/syntastic.git'
 endif
 
 " ===========================================================
@@ -384,7 +390,8 @@ map <leader>n :NERDTreeToggle<CR>
 " Run command-t file search
 " TODO: Get something else other than CommandT as difficult to deal with
 " ruby/rake support
-" map <leader>f :CommandT<CR>
+map <leader>f :CtrlP<CR>
+
 " Ack searching
 nmap <leader>a <Esc>:Ack!
 
@@ -396,3 +403,16 @@ map <leader>j :RopeGotoDefinition<CR>
 
 " Rename whatever the cursor is on (including references to it)
 map <leader>r :RopeRename<CR>
+
+" Fixing options for ctrlp (fuzzy file search)
+set wildignore+=*/tmp/*,*.so,*.swp,*.zip     " MacOSX/Linux
+set wildignore+=*\\tmp\\*,*.swp,*.zip,*.exe  " Windows
+" ignoring blaze files.
+set wildignore+=*blaze*/*,*review/*
+
+
+let g:ctrlp_custom_ignore = {
+  \ 'dir':  '\v[\/]\.(git|hg|svn)$',
+  \ 'file': '\v\.(exe|so|dll)$',
+  \ 'link': 'some_bad_symbolic_links',
+  \ }

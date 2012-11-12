@@ -43,3 +43,9 @@ vim +BundleInstall +qall 2>/dev/null
 echo "There you are! Welcome in our world."
 
 echo "Enjoy!"
+
+if ! foobar_loc="$(type -p "$flake8")" || [ -z "$foobar_loc" ]; then
+    echo
+    echo "PS: You need to install flake8 for python if you want to use the automatic linters;
+    You can get it by pip install flake8"
+fi
