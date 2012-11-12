@@ -199,6 +199,12 @@ au FileType go set rtp+=$GOROOT/misc/vim
 au FileType go filetype plugin indent on
 syntax on
 
+function! HighlightTooLongLines()
+  highlight def link RightMargin Error
+  if &textwidth != 0
+    exec ('match RightMargin /\%>' . &textwidth . 'v.\+/')
+  endif
+endfunction
 
 augroup filetypedetect
 au WinEnter,BufNewFile,BufRead * call HighlightTooLongLines()
