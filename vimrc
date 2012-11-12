@@ -108,7 +108,7 @@ set ruler                   " Show some info, even without statuslines.
 set laststatus=2            " Always show statusline, even if only 1 window.
 
 " displays tabs with :set list & displays when a line runs off-screen
-set listchars=tab:>-,eol:$,trail:-,precedes:<,extends:>
+set listchars=tab:>-,trail:-,precedes:<,extends:>
 set list
 
 """ Searching and Patterns
@@ -293,7 +293,8 @@ if count(g:vimified_packages, 'general')
     Bundle 'mileszs/ack.vim.git'
     " This one needs vim 7.3 to install
     Bundle 'sjl/gundo.vim.git'  
-    Bundle 'fs111/pydoc.vim.git'
+    " Disabling this because its really flaky and makes the editor slow."
+    " Bundle 'fs111/pydoc.vim.git'
     Bundle 'vim-scripts/pep8.git'
     Bundle 'alfredodeza/pytest.vim.git'
     Bundle 'reinh/vim-makegreen'
@@ -303,12 +304,17 @@ if count(g:vimified_packages, 'general')
     Bundle 'vim-scripts/AutoComplPop.git'
     Bundle 'altercation/vim-colors-solarized.git'
     Bundle 'plasticboy/vim-markdown.git'
+    " Install snipmate dependencies
+    Bundle "MarcWeber/vim-addon-mw-utils"
+    Bundle "tomtom/tlib_vim"
+    Bundle "honza/snipmate-snippets"
+    " actual snipmate"
     Bundle 'garbas/vim-snipmate.git'
-    Bundle 'MarcWeber/vim-addon-mw-utils.git'
-    Bundle 'tomtom/tlib_vim.git'
-    Bundle 'honza/snipmate-snippets.git'
     Bundle 'kchmck/vim-coffee-script.git'
     Bundle 'Raimondi/delimitMate.git'
+    Bundle 'fholgado/minibufexpl.vim.git'
+    Bundle 'ervandew/supertab.git'
+    Bundle 'kevinw/pyflakes-vim.git'
 endif
 
 " ===========================================================
