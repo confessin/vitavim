@@ -12,3 +12,10 @@ To install Just do :
 
 Ands you are doens. Enjoy !! *Derp*
 
+
+FAQ:
+=======
+
+Not working:
+    
+    You can just back up your .vimrc and .vim(if exists) and remove them (or unlink them), follow the installation steps and copy your .vimrc into local.vimrc
