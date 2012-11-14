@@ -301,7 +301,7 @@ if count(g:vimified_packages, 'general')
     Bundle 'reinh/vim-makegreen'
     Bundle 'vim-scripts/TaskList.vim.git'
     Bundle 'vim-scripts/The-NERD-tree.git'
-    Bundle 'sontek/rope-vim.git'
+    Bundle 'confessin/rope-vim.git'
     Bundle 'vim-scripts/AutoComplPop.git'
     Bundle 'altercation/vim-colors-solarized.git'
     Bundle 'plasticboy/vim-markdown.git'
