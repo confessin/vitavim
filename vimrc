@@ -270,11 +270,12 @@ if ! exists('g:vimified_packages')
     let g:vimified_packages = ['general', 'fancy', 'os', 'coding', 'ruby', 'html', 'css', 'js', 'clojure', 'haskell', 'color']
 endif
 
+set nocompatible         " Don't be compatible with vi.
+filetype off             " Required by Vundle.
 
-" VUNDLE {{{
+
 set rtp+=~/.vim/bundle/vundle/
 call vundle#rc()
-
 
 " let Vundle manage Vundle
 " required! 
@@ -306,14 +307,16 @@ if count(g:vimified_packages, 'general')
     Bundle 'altercation/vim-colors-solarized.git'
     Bundle 'plasticboy/vim-markdown.git'
     " Install snipmate dependencies
-    Bundle "MarcWeber/vim-addon-mw-utils"
-    Bundle "tomtom/tlib_vim"
-    Bundle "honza/snipmate-snippets"
-    " actual snipmate"
-    Bundle 'garbas/vim-snipmate.git'
+    " Bundle 'MarcWeber/vim-addon-mw-utils'
+    " Bundle 'tomtom/tlib_vim'
+    " Bundle 'honza/snipmate-snippets'
+    " " actual snipmate
+    " Bundle 'garbas/vim-snipmate.git'
+    " FIXME(mrafi): ultisnips is actually giving problems in keymap with 
+    " the supertab and autocomplete.
+    Bundle 'fholgado/minibufexpl.vim.git'
     Bundle 'kchmck/vim-coffee-script.git'
     Bundle 'Raimondi/delimitMate.git'
-    Bundle 'fholgado/minibufexpl.vim.git'
     Bundle 'ervandew/supertab.git'
     "Bundle 'kevinw/pyflakes-vim.git'
     " for fuzzy search of files. supports regex
@@ -321,8 +324,11 @@ if count(g:vimified_packages, 'general')
     " For 1 lint for all purpose.
     " FIXME: It needs external tools for checking lint
     Bundle 'scrooloose/syntastic.git'
+    Bundle 'SirVer/ultisnips.git'
 endif
 
+set rtp+=$GOROOT/misc/vim
+filetype plugin indent on
 " ===========================================================
 " Mapping 3rd Party plugins
 " ============================================================
@@ -416,3 +422,5 @@ let g:ctrlp_custom_ignore = {
   \ 'file': '\v\.(exe|so|dll)$',
   \ 'link': 'some_bad_symbolic_links',
   \ }
+
+let g:UltiSnipsExpandTrigger="<c-j>"
