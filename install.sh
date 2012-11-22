@@ -49,3 +49,9 @@ if ! foobar_loc="$(type -p "$flake8")" || [ -z "$foobar_loc" ]; then
     echo "PS: You need to install flake8 for python if you want to use the automatic linters;
     You can get it by pip install flake8"
 fi
+
+if ! foobar_loc="$(type -p "$go")" || [ -z "$foobar_loc" ]; then
+    echo
+    echo "PS: You need to install flake8 for python if you want to use the automatic linters;
+    You can get it by pip install flake8"
+fi
