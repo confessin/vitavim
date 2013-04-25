@@ -195,10 +195,10 @@ endif
 set colorcolumn=79
 
 " adding go conf
-au BufRead,BufNewFile *.go set filetype=go
-au FileType go set rtp+=$GOROOT/misc/vim
-au FileType go filetype plugin indent on
-syntax on
+"au BufRead,BufNewFile *.go set filetype=go
+"au FileType go set rtp+=$GOROOT/misc/vim
+"au FileType go filetype plugin indent on
+"syntax on
 
 function! HighlightTooLongLines()
   highlight def link RightMargin Error
