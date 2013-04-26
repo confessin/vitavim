@@ -41,6 +41,16 @@ Opening up the goto file list/menu.
 
     <leader> + f
 
+Code Folding. (The default code folding method is indent in out case.)
+
+    za: Toggle current fold
+    zM: Fold all methods 
+    zR: Unfold all folds
+    <leader>z<Up>: Increments fold level by 1
+    <leader>z<Down>: Decmrements fold level by 1
+    <leader>z<Up>: Sets fold level as 1
+    <leader>z<Up>: Sets fold level as 99
+
 Deleting present buffer window.
 
     :bd

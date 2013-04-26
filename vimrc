@@ -82,8 +82,13 @@ set matchpairs+=<:>         " show matching <> (html mainly) as well
 set foldmethod=indent       " allow us to fold on indents
 set foldlevel=99            " don't fold by default
 
+" Set folding level increments and decrements.
+map <leader>z<Up> :set foldlevel+=1<CR>
+map <leader>z<Down> :set foldlevel-=1<CR>
+map <leader>z1 :set foldlevel=1<CR>
+map <leader>zz :set foldlevel=99<CR>
 " don't outdent hashes
-inoremap # #
+"inoremap # #
 
 " close preview window automatically when we move around
 autocmd CursorMovedI * if pumvisible() == 0|pclose|endif
