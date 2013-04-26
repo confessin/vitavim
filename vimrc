@@ -13,7 +13,7 @@
 " nose, django-nose
 
 " TODO: Add package maps and package dependent stuff.
-
+set shell=/bin/bash
 set nocompatible              " Don't be compatible with vi
 let mapleader=","             " change the leader to be a comma vs slash
 filetype off
@@ -328,7 +328,7 @@ if count(g:vimified_packages, 'general')
     Bundle 'SirVer/ultisnips.git'
 endif
 
-set rtp+=$GOROOT/misc/vim
+"set rtp+=$GOROOT/misc/vim
 filetype plugin indent on
 " ===========================================================
 " Mapping 3rd Party plugins
