@@ -73,15 +73,15 @@ set nowrap                  " don't wrap text
 set linebreak               " don't wrap textin the middle of a word
 set autoindent              " always set autoindenting on
 set smartindent             " use smart indent if there is no indent file
-set tabstop=2               " <tab> inserts 2 spaces 
-set shiftwidth=2            " but an indent level is 2 spaces wide.
+set tabstop=4               " <tab> inserts 4 spaces 
+set shiftwidth=4            " but an indent level is 4 spaces wide.
 set softtabstop=2           " <BS> over an autoindent deletes both spaces.
 set expandtab               " Use spaces, not tabs, for autoindent/tab key.
 set shiftround              " rounds indent to a multiple of shiftwidth
 set matchpairs+=<:>         " show matching <> (html mainly) as well
 set foldmethod=indent       " allow us to fold on indents
 set foldlevel=99            " don't fold by default
-
+set t_Co=256                " For using terminals 256 colors.
 " Set folding level increments and decrements.
 map <leader>z<Up> :set foldlevel+=1<CR>
 map <leader>z<Down> :set foldlevel-=1<CR>
@@ -125,7 +125,7 @@ set incsearch               " Incrementally search while typing a /regex
 
 """" Display
 if has("gui_running")
-    colorscheme wombat
+    colorscheme kolor
     " Remove menu bar
     set guioptions-=m
 
@@ -170,8 +170,8 @@ let g:acp_completeoptPreview=1
 " Python
 "au BufRead *.py compiler nose
 au FileType python set omnifunc=pythoncomplete#Complete
-au FileType python setlocal expandtab shiftwidth=2 tabstop=4 softtabstop=2 smartindent cinwords=if,elif,else,for,while,try,except,finally,def,class,with
-au FileType coffee setlocal expandtab shiftwidth=2 tabstop=4 softtabstop=2 smartindent cinwords=if,elif,else,for,while,try,except,finally,def,class,with
+au FileType python setlocal expandtab shiftwidth=4 tabstop=4 softtabstop=4 smartindent cinwords=if,elif,else,for,while,try,except,finally,def,class,with
+au FileType coffee setlocal expandtab shiftwidth=4 tabstop=4 softtabstop=4 smartindent cinwords=if,elif,else,for,while,try,except,finally,def,class,with
 au BufRead *.py set efm=%C\ %.%#,%A\ \ File\ \"%f\"\\,\ line\ %l%.%#,%Z%[%^\ ]%\\@=%m
 " Don't let pyflakes use the quickfix window
 let g:pyflakes_use_quickfix = 0
