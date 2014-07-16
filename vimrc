@@ -331,6 +331,7 @@ if count(g:vimified_packages, 'general')
     " FIXME: It needs external tools for checking lint
     Bundle 'scrooloose/syntastic.git'
     Bundle 'SirVer/ultisnips.git'
+    Bundle 'honza/vim-snippets.git'
 endif
 
 "set rtp+=$GOROOT/misc/vim
