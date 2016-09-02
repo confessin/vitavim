@@ -293,7 +293,6 @@ Bundle 'greplace.vim'
 
 if count(g:vimified_packages, 'general')
     " Git Integration
-    Bundle 'tpope/vim-fugitive'
     Bundle 'tpope/vim-fugitive.git'
     Bundle 'tpope/vim-surround.git'
     Bundle 'tpope/vim-git.git'
@@ -324,13 +323,11 @@ if count(g:vimified_packages, 'general')
     " Bundle 'garbas/vim-snipmate.git'
     " FIXME(mrafi): ultisnips is actually giving problems in keymap with 
     " the supertab and autocomplete.
-    Bundle 'fholgado/minibufexpl.vim.git'
-    Bundle 'kchmck/vim-coffee-script.git'
     Bundle 'Raimondi/delimitMate.git'
     " Bundle 'ervandew/supertab.git'
     "Bundle 'kevinw/pyflakes-vim.git'
     " for fuzzy search of files. supports regex
-    Bundle 'kien/ctrlp.vim.git'
+    Bundle 'ctrlpvim/ctrlp.vim'
     " For 1 lint for all purpose.
     " FIXME: It needs external tools for checking lint
     Bundle 'scrooloose/syntastic.git'
@@ -339,6 +336,8 @@ if count(g:vimified_packages, 'general')
     Bundle "motus/pig.vim"
     Bundle "freitass/todo.txt-vim.git"
     Bundle "Valloric/YouCompleteMe.git"
+    Bundle "vim-airline/vim-airline.git"
+    Bundle "scrooloose/nerdcommenter"
 endif
 
 "set rtp+=$GOROOT/misc/vim
@@ -441,5 +440,53 @@ let g:ctrlp_custom_ignore = {
 
 let g:UltiSnipsExpandTrigger="<c-j>"
 
+let g:airline#extensions#tabline#enabled = 1
+
+" VIM Airline Mappings.
+nmap <leader>1 <Plug>AirlineSelectTab1
+nmap <leader>2 <Plug>AirlineSelectTab2
+nmap <leader>3 <Plug>AirlineSelectTab3
+nmap <leader>4 <Plug>AirlineSelectTab4
+nmap <leader>5 <Plug>AirlineSelectTab5
+nmap <leader>6 <Plug>AirlineSelectTab6
+nmap <leader>7 <Plug>AirlineSelectTab7
+nmap <leader>8 <Plug>AirlineSelectTab8
+nmap <leader>9 <Plug>AirlineSelectTab9
+nmap <leader>- <Plug>AirlineSelectPrevTab
+nmap <leader>+ <Plug>AirlineSelectNextTab
 
 
+" Tab navigation like Firefox.
+nnoremap <C-S-tab> :bprevious<CR>
+nnoremap <C-tab>   :bnext<CR>
+inoremap <C-S-tab> <Esc>:bprevious<CR>i
+inoremap <C-tab>   <Esc>:bnext<CR>i
+
+
+" Increase and decrease font size functions.
+let s:pattern = '^\(.* \)\([1-9][0-9]*\)$'
+let s:minfontsize = 6
+let s:maxfontsize = 16
+function! AdjustFontSize(amount)
+  if has("gui_gtk2") && has("gui_running")
+    let fontname = substitute(&guifont, s:pattern, '\1', '')
+    let cursize = substitute(&guifont, s:pattern, '\2', '')
+    let newsize = cursize + a:amount
+    if (newsize >= s:minfontsize) && (newsize <= s:maxfontsize)
+      let newfont = fontname . newsize
+      let &guifont = newfont
+    endif
+  else
+    echoerr "You need to run the GTK2 version of Vim to use this function."
+  endif
+endfunction
+
+function! LargerFont()
+  call AdjustFontSize(1)
+endfunction
+command! LargerFont call LargerFont()
+
+function! SmallerFont()
+  call AdjustFontSize(-1)
+endfunction
+command! SmallerFont call SmallerFont()
