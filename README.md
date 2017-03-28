@@ -8,6 +8,8 @@ To install Just do :
     git clone git://github.com/confessin/vitavim vitavim/
     cd vitavim
     ./install.sh
+    # For completely new machine. Use 
+    ./install.sh new
 
 
 Ands you are doens. Enjoy !! *Derp*

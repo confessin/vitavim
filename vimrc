@@ -13,7 +13,6 @@
 " nose, django-nose
 
 " TODO: Add package maps and package dependent stuff.
-set shell=/bin/bash
 set nocompatible              " Don't be compatible with vi
 let mapleader=","             " change the leader to be a comma vs slash
 filetype off
@@ -157,6 +156,7 @@ inoremap <expr> <CR> pumvisible() ? "\<C-y>" : "\<C-g>u\<CR>"
 " Mako/HTML
 autocmd BufNewFile,BufRead *.mako,*.mak,*.jinja2 setlocal ft=html
 autocmd FileType html,xhtml,xml,css setlocal expandtab shiftwidth=2 tabstop=2 softtabstop=2
+autocmd FileType java setlocal autoindent noexpandtab tabstop=4 shiftwidth=4
 
 " Javascript
 au BufRead *.js set makeprg=jslint\ %
@@ -286,58 +286,60 @@ call vundle#rc()
 
 " let Vundle manage Vundle
 " required! 
-Bundle 'gmarik/vundle'
+Plugin 'gmarik/vundle'
 
 
-Bundle 'greplace.vim'
+Plugin 'greplace.vim'
 
 if count(g:vimified_packages, 'general')
     " Git Integration
-    Bundle 'tpope/vim-fugitive.git'
-    Bundle 'tpope/vim-surround.git'
-    Bundle 'tpope/vim-git.git'
-    "Bundle 'wincent/Command-T.git'  " this one needs rake/ruby to install. :/
-    Bundle 'mileszs/ack.vim.git'
+    Plugin 'tpope/vim-fugitive.git'
+    Plugin 'tpope/vim-surround.git'
+    Plugin 'tpope/vim-git.git'
+    "Plugin 'wincent/Command-T.git'  " this one needs rake/ruby to install. :/
+    Plugin 'mileszs/ack.vim.git'
     " This one needs vim 7.3 to install
-    Bundle 'sjl/gundo.vim.git'  
+    Plugin 'sjl/gundo.vim.git'  
     " Disabling this because its really flaky and makes the editor slow."
-    " Bundle 'fs111/pydoc.vim.git'
+    " Plugin 'fs111/pydoc.vim.git'
     " disabling this since using syntastic.
-    " Bundle 'vim-scripts/pep8.git'
-    Bundle 'alfredodeza/pytest.vim.git'
-    Bundle 'reinh/vim-makegreen'
-    Bundle 'vim-scripts/TaskList.vim.git'
-    Bundle 'vim-scripts/The-NERD-tree.git'
-    " Bundle 'confessin/rope-vim.git'
-    Bundle 'python-rope/rope.git'
-    Bundle 'python-rope/ropevim.git'
-    "Bundle 'vim-scripts/AutoComplPop.git'
-    " Bundle 'Shougo/neocomplcache.vim'
-    Bundle 'altercation/vim-colors-solarized.git'
-    Bundle 'plasticboy/vim-markdown.git'
+    " Plugin 'vim-scripts/pep8.git'
+    Plugin 'alfredodeza/pytest.vim.git'
+    Plugin 'reinh/vim-makegreen'
+    Plugin 'vim-scripts/TaskList.vim.git'
+    Plugin 'scrooloose/nerdtree'
+    Plugin 'Xuyuanp/nerdtree-git-plugin'
+    " Plugin 'confessin/rope-vim.git'
+    Plugin 'python-rope/rope.git'
+    Plugin 'python-rope/ropevim.git'
+    "Plugin 'vim-scripts/AutoComplPop.git'
+    " Plugin 'Shougo/neocomplcache.vim'
+    Plugin 'altercation/vim-colors-solarized.git'
+    Plugin 'godlygeek/tabular'
+    Plugin 'plasticboy/vim-markdown'
     " Install snipmate dependencies
-    " Bundle 'MarcWeber/vim-addon-mw-utils'
-    " Bundle 'tomtom/tlib_vim'
-    " Bundle 'honza/snipmate-snippets'
+    " Plugin 'MarcWeber/vim-addon-mw-utils'
+    " Plugin 'tomtom/tlib_vim'
+    " Plugin 'honza/snipmate-snippets'
     " " actual snipmate
-    " Bundle 'garbas/vim-snipmate.git'
+    " Plugin 'garbas/vim-snipmate.git'
     " FIXME(mrafi): ultisnips is actually giving problems in keymap with 
     " the supertab and autocomplete.
-    Bundle 'Raimondi/delimitMate.git'
-    " Bundle 'ervandew/supertab.git'
-    "Bundle 'kevinw/pyflakes-vim.git'
+    Plugin 'Raimondi/delimitMate.git'
+    " Plugin 'ervandew/supertab.git'
+    "Plugin 'kevinw/pyflakes-vim.git'
     " for fuzzy search of files. supports regex
-    Bundle 'ctrlpvim/ctrlp.vim'
+    Plugin 'ctrlpvim/ctrlp.vim'
     " For 1 lint for all purpose.
     " FIXME: It needs external tools for checking lint
-    Bundle 'scrooloose/syntastic.git'
-    Bundle 'SirVer/ultisnips.git'
-    Bundle 'honza/vim-snippets.git'
-    Bundle "motus/pig.vim"
-    Bundle "freitass/todo.txt-vim.git"
-    Bundle "Valloric/YouCompleteMe.git"
-    Bundle "vim-airline/vim-airline.git"
-    Bundle "scrooloose/nerdcommenter"
+    Plugin 'scrooloose/syntastic.git'
+    Plugin 'SirVer/ultisnips.git'
+    Plugin 'honza/vim-snippets.git'
+    Plugin 'motus/pig.vim'
+    Plugin 'freitass/todo.txt-vim.git'
+    Plugin 'Valloric/YouCompleteMe.git'
+    Plugin 'vim-airline/vim-airline.git'
+    Plugin 'scrooloose/nerdcommenter'
 endif
 
 "set rtp+=$GOROOT/misc/vim
@@ -373,6 +375,8 @@ map <leader>td <Plug>TaskList
 let g:pep8_map='<leader>8'
 " ignoring 4 spaces indent checker. I will be using 2 spaces for this.
 let g:syntastic_python_checker_args='--ignore=E111'
+
+let g:vim_markdown_folding_disabled = 1
 
 " run py.test's
 nmap <silent><Leader>tf <Esc>:Pytest file<CR>

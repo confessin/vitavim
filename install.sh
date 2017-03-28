@@ -17,6 +17,8 @@ if [ "$1" = "new" ]; then
         ruby-dev git
     # remove existing vim.
     sudo apt-get remove vim vim-runtime gvim
+    sudo apt-get install build-essential cmake
+    sudo apt-get install python-dev python3-dev
 
     cd ..
     git clone https://github.com/vim/vim.git
@@ -29,7 +31,7 @@ if [ "$1" = "new" ]; then
                 --enable-perlinterp \
                 --enable-luainterp \
                 --enable-gui=gtk2 --enable-cscope --prefix=/usr
-    make VIMRUNTIMEDIR=/usr/share/vim/vim74
+    make VIMRUNTIMEDIR=/usr/share/vim/vim80
     sudo make install
 
     # Make defaults.
