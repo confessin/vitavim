@@ -333,7 +333,7 @@ if count(g:vimified_packages, 'general')
     " For 1 lint for all purpose.
     " FIXME: It needs external tools for checking lint
     Plugin 'scrooloose/syntastic.git'
-    Plugin 'SirVer/ultisnips.git'
+    "Plugin 'SirVer/ultisnips.git'
     Plugin 'honza/vim-snippets.git'
     Plugin 'motus/pig.vim'
     Plugin 'freitass/todo.txt-vim.git'
